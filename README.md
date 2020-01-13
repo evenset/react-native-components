@@ -13,14 +13,3 @@ npm i @evenset/react-native-fundamental-components
 ```
 import { Example } from '@evenset/react-native-fundamental-components';
 ```
-
-## Building
-The project can be build using the command:
-```
-npm run build
-```
-the files will be outputed to the `lib\` directory.
-You can also test to see if the build will work with the command (no outputed files)
-```
-npm run build:check
-```
