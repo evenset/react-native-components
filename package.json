@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --declaration && echo 'Finished building NPM package'",
-    "build:check": "tsc --noEmit"
+    "build:check": "tsc --noEmit",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,26 @@
   "homepage": "https://github.com/evenset/react-native-components#readme",
   "types": "lib/index.d.ts",
   "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@babel/runtime": "^7.8.0",
+    "@react-native-community/eslint-config": "0.0.6",
     "@types/react": "^16.9.17",
     "@types/react-native": "^0.60.30",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-native": "^3.8.1",
+    "metro-react-native-babel-preset": "^0.56.4",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "react-native": "^0.61.5",
     "typescript": "^3.7.4"
   },
   "peerDependencies": {
