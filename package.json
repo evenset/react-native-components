@@ -1,11 +1,15 @@
 {
-  "name": "react-native-components",
+  "name": "react-native-components-u",
   "version": "0.0.1",
   "description": "Commonly used react-native components",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --declaration && echo 'Finished building NPM package'"
+    "build": "tsc --declaration && echo 'Finished building NPM package'",
+    "build:check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -16,13 +20,16 @@
     "react",
     "component"
   ],
+  "files": [
+    "lib"
+  ],
   "author": "Evenset Inc.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/evenset/react-native-components/issues"
   },
   "homepage": "https://github.com/evenset/react-native-components#readme",
-  "types": "./lib/index.d.ts",
+  "types": "lib/index.d.ts",
   "devDependencies": {
     "@types/react": "^16.9.17",
     "@types/react-native": "^0.60.30",
