@@ -4,7 +4,8 @@
   "description": "Commonly used react-native components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --declaration && echo 'Finished building NPM package'"
   },
   "repository": {
     "type": "git",
@@ -16,9 +17,21 @@
     "component"
   ],
   "author": "Evenset Inc.",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/evenset/react-native-components/issues"
   },
-  "homepage": "https://github.com/evenset/react-native-components#readme"
+  "homepage": "https://github.com/evenset/react-native-components#readme",
+  "types": "./lib/index.d.ts",
+  "devDependencies": {
+    "@types/react": "^16.9.17",
+    "@types/react-native": "^0.60.30",
+    "react": "^16.12.0",
+    "react-native": "^0.61.5",
+    "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.60.0",
+    "react": ">=16.8.0"
+  }
 }
