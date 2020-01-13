@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
 
 const ExampleComponent = (): ReactElement => (
     <View style={styles.container}>
-        <Text>{'Hello World'}</Text>
+        {/* eslint-disable-next-line react/jsx-no-literals */}
+        <Text>Hello World</Text>
     </View>
 );
 
