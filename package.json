@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/evenset/react-native-components.git"
+    "url": "git+https://github.com:evenset/react-native-fundamental-components.git"
   },
   "keywords": [
     "react-native",
@@ -28,9 +28,9 @@
   "author": "Evenset Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/evenset/react-native-components/issues"
+    "url": "https://github.com/evenset/react-native-fundamental-components/issues"
   },
-  "homepage": "https://github.com/evenset/react-native-components#readme",
+  "homepage": "https://github.com/evenset/react-native-fundamental-components#readme",
   "types": "lib/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.8.0",
