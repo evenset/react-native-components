@@ -33,12 +33,11 @@
   "devDependencies": {
     "@types/react": "^16.9.17",
     "@types/react-native": "^0.60.30",
-    "react": "^16.12.0",
-    "react-native": "^0.61.5",
     "typescript": "^3.7.4"
   },
   "peerDependencies": {
     "react-native": ">=0.60.0",
     "react": ">=16.8.0"
-  }
+  },
+  "dependencies": {}
 }
