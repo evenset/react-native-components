@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --declaration && echo 'Finished building NPM package'",
     "build:check": "tsc --noEmit",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
@@ -32,10 +33,21 @@
   },
   "homepage": "https://github.com/evenset/react-native-fundamental-components#readme",
   "types": "lib/index.d.ts",
+  "peerDependencies": {
+    "react-native": ">=0.60.0",
+    "react": ">=16.8.0"
+  },
+  "dependencies": {
+    "i18n-js": "3.5.1",
+    "lodash.memoize": "4.1.2",
+    "react-native-localize": "1.3.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.0",
     "@babel/runtime": "^7.8.0",
     "@react-native-community/eslint-config": "0.0.6",
+    "@types/i18n-js": "3.0.1",
+    "@types/lodash.memoize": "4.1.6",
     "@types/react": "^16.9.17",
     "@types/react-native": "^0.60.30",
     "@typescript-eslint/eslint-plugin": "^2.16.0",
@@ -54,10 +66,5 @@
     "react": "^16.12.0",
     "react-native": "^0.61.5",
     "typescript": "^3.7.4"
-  },
-  "peerDependencies": {
-    "react-native": ">=0.60.0",
-    "react": ">=16.8.0"
-  },
-  "dependencies": {}
+  }
 }
