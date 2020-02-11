@@ -8,14 +8,14 @@ const styles = StyleSheet.create({
     },
 });
 
-export interface Props {
+export interface ITextProps {
     value: string;
     styleText?: StyleProp<TextStyle>;
     styleContainer?: StyleProp<ViewStyle>;
     screen?: string;
 }
 
-class DefaultTextField extends React.PureComponent<Props> {
+export class DefaultTextField extends React.PureComponent<ITextProps> {
     render(): ReactElement {
         const { screen, styleText, styleContainer, value, ...other } = this.props;
 
@@ -32,5 +32,3 @@ class DefaultTextField extends React.PureComponent<Props> {
         );
     }
 }
-
-export default DefaultTextField;

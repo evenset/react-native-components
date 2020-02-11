@@ -35,6 +35,7 @@ module.exports = {
         // e.g. "@typescript-eslint/explicit-function-return-type": "off",
         '@typescript-eslint/explicit-function-return-type': 'error',
         '@typescript-eslint/no-unused-vars': 'off', // Handled by tsc checking
+        '@typescript-eslint/interface-name-prefix': 'off',
         'jest/no-commented-out-tests': 'error',
         'react/jsx-no-literals': ['error', { 'noStrings': true }], // Use i18n instead
         'import/no-extraneous-dependencies': 'error',
