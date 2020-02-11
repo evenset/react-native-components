@@ -9,12 +9,12 @@
   "scripts": {
     "postversion": "git push && git push --tags",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --declaration && echo 'Finished building NPM package'",
+    "build": "rm -rf ./lib && tsc && echo 'Finished building NPM package'",
     "build:check": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "tsc": "tsc",
-    "tsc-check": "tsc --noEmit"
+    "tsc": "tsc --noEmit"
   },
+  "prepublish": "build",
   "repository": {
     "type": "git",
     "url": "git+https://github.com:evenset/react-native-fundamental-components.git"
