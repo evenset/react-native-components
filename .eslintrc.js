@@ -8,6 +8,7 @@ module.exports = {
         },
     },
     env: {
+        es6: true, // Setting ecmaVersion doesn't imply having access to es6
         node: true,
         jest: true,
         browser: true,
@@ -33,6 +34,7 @@ module.exports = {
         // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
         // e.g. "@typescript-eslint/explicit-function-return-type": "off",
         '@typescript-eslint/explicit-function-return-type': 'error',
+        '@typescript-eslint/no-unused-vars': 'off', // Handled by tsc checking
         'jest/no-commented-out-tests': 'error',
         'react/jsx-no-literals': ['error', { 'noStrings': true }], // Use i18n instead
         'import/no-extraneous-dependencies': 'error',
@@ -51,7 +53,7 @@ module.exports = {
         ],
         'callback-return': 'error',
         camelcase: 'error',
-        'capitalized-comments': 'warn',
+        'capitalized-comments': 'off',
         'class-methods-use-this': 'off',
         'comma-dangle': [
             'error',
@@ -80,14 +82,13 @@ module.exports = {
         'id-length': 'error',
         'id-match': 'error',
         'implicit-arrow-linebreak': 'error',
-        indent: ['error', 4],
+        indent: ['error', 4, { "SwitchCase": 1 }],
         'jsx-quotes': [
             'error',
             'prefer-double'
         ],
         'key-spacing': 'error',
         'keyword-spacing': 'error',
-        'line-comment-position': 'error',
         'linebreak-style': [
             'error',
             'unix'
@@ -126,7 +127,6 @@ module.exports = {
         'no-implicit-coercion': 'error',
         'no-implicit-globals': 'error',
         'no-implied-eval': 'error',
-        'no-inline-comments': 'error',
         'no-invalid-this': 'error',
         'no-iterator': 'error',
         'no-label-var': 'error',
@@ -191,6 +191,7 @@ module.exports = {
         'no-useless-return': 'error',
         'no-var': 'error',
         'no-void': 'error',
+        'no-warning-comments': 'warn',
         'no-whitespace-before-property': 'error',
         'no-with': 'error',
         'nonblock-statement-body-position': 'error',
@@ -219,6 +220,7 @@ module.exports = {
             'error',
             'single',
             {
+                avoidEscape: true,
                 allowTemplateLiterals: true
             }
         ],
@@ -229,7 +231,6 @@ module.exports = {
         'require-await': 'error',
         'require-unicode-regexp': 'error',
         'rest-spread-spacing': 'error',
-        semi: 'error',
         'semi-spacing': 'error',
         'semi-style': [
             'error',
@@ -253,7 +254,6 @@ module.exports = {
             'error',
             'never'
         ],
-        'valid-jsdoc': 'error',
         'vars-on-top': 'error',
         'wrap-iife': 'error',
         'wrap-regex': 'error',
