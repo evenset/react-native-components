@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --declaration && echo 'Finished building NPM package'",
     "build:check": "tsc --noEmit",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",

@@ -11,6 +11,7 @@ const disabled = 'disabled';
  * Translation function, pass key matching the locale file and any params
  * Uses memoize for better performance
  */
+
 export const translate = memoize(
     (key: string, config?: memoizeConfig) => {
         // If localization is not enabled, return the string as is
@@ -46,9 +47,15 @@ export const translate = memoize(
  * During initialization an language tag and right-to-left setting can be based to overwrite the defaults.
  * Translation can be completely disabled by passing enabled=false.
  */
-export const setI18nConfig: (enabled: boolean, translations?: { [language: string]: () => { [key: string]: { [key: string]: string } } }, language?: string | null, setRTL?: boolean | null) => void = (enabled, translations, language = null, setRTL = null) => {
+export const setI18nConfig: (
+    enabled: boolean,
+    translations?: { [language: string]: () => { [key: string]: { [key: string]: string } } },
+    language?: string | null,
+    setRTL?: boolean | null,
+) => void = (enabled, translations, language = null, setRTL = null) => {
     if (!enabled || !translations) {
         i18n.locale = disabled;
+
         return;
     }
 
