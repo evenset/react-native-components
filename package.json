@@ -14,7 +14,6 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "tsc": "tsc --noEmit"
   },
-  "prepublish": "build",
   "repository": {
     "type": "git",
     "url": "git+https://github.com:evenset/react-native-fundamental-components.git"
