@@ -23,14 +23,12 @@ const styles = StyleSheet.create({
     // eslint-disable-next-line react-native/no-color-literals
     bubble: {
         borderRadius: 10,
-        // FIXME: Move to color stylesheet once it is implemented
         backgroundColor: 'grey',
         width: '80%',
         height: 40,
     },
     // eslint-disable-next-line react-native/no-color-literals
     error: {
-        // FIXME: Move to color stylesheet once it is implemented
         color: 'red',
     },
     column: {

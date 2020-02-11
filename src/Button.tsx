@@ -12,31 +12,25 @@ import {
     ViewStyle,
     TextStyle,
     Platform,
-    TouchableOpacityComponent,
-    TouchableNativeFeedbackComponent,
 } from 'react-native';
 
-const Touchable: typeof TouchableOpacityComponent | typeof TouchableNativeFeedbackComponent =
-    Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
+const Touchable = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
 
 const styles = StyleSheet.create({
     // eslint-disable-next-line react-native/no-color-literals
     title: {
         fontWeight: 'bold',
         textAlign: 'center',
-        // FIXME: Move to color constants file
         backgroundColor: 'grey',
         padding: 15,
     },
     // eslint-disable-next-line react-native/no-color-literals
     button: {
-        // FIXME: Move to color constants file
         borderColor: 'grey',
         alignItems: 'center',
     },
     // eslint-disable-next-line react-native/no-color-literals
     disabledTitle: {
-        // FIXME: Move to color constants file
         opacity: 0.5,
     },
     container: {
@@ -60,6 +54,8 @@ class DefaultButton extends React.PureComponent<Props> {
             <LocalizationConsumer>
                 {({ translate }): ReactElement => (
                     <View style={[styles.container, styleContainer]}>
+                        {/*
+                        // @ts-ignore */}
                         <Touchable
                             disabled={disabled}
                             style={[styles.button, styleButton]}

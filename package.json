@@ -12,7 +12,8 @@
     "build": "tsc --declaration && echo 'Finished building NPM package'",
     "build:check": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "tsc-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
