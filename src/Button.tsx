@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export interface IButtonProps extends TouchableOpacityProps, TouchableNativeFeedbackProps {
+export interface IButton extends TouchableOpacityProps, TouchableNativeFeedbackProps {
     screen?: string;
     title: string;
     styleButton?: StyleProp<ViewStyle>;
@@ -46,7 +46,7 @@ export interface IButtonProps extends TouchableOpacityProps, TouchableNativeFeed
     styleContainer?: StyleProp<ViewStyle>;
 }
 
-export class DefaultButton extends React.PureComponent<IButtonProps> {
+export class DefaultButton extends React.PureComponent<IButton> {
     render(): ReactElement {
         const { screen, onPress, title, disabled, styleTitle, styleButton, styleContainer, ...other } = this.props;
 

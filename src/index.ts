@@ -1,8 +1,6 @@
-import * as Example from './Example';
-import * as Localization from './contexts/LocalizationContext';
-import * as Text from './Text';
-import * as TextInput from './TextInput';
-import * as AvoidKeyboard from './AvoidKeyboard';
-import * as Button from './Button';
-
-export { Example, Localization, Text, TextInput, Button, AvoidKeyboard };
+export * from './Example';
+export * from './contexts/LocalizationContext';
+export * from './Text';
+export * from './TextInput';
+export * from './AvoidKeyboard';
+export * from './Button';

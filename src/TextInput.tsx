@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export interface ITextInputProps extends TextInputProps {
+export interface ITextInput extends TextInputProps {
     screen?: string;
     errorMessageScreen?: string;
     label?: string;
@@ -58,7 +58,7 @@ export interface ITextInputProps extends TextInputProps {
     styleInnerErrorRow?: StyleProp<ViewStyle>;
 }
 
-export class DefaultTextInput extends React.PureComponent<ITextInputProps> {
+export class DefaultTextInput extends React.PureComponent<ITextInput> {
     render(): ReactElement {
         const {
             screen,
