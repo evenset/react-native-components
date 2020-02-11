@@ -46,7 +46,7 @@ export interface IButton extends TouchableOpacityProps, TouchableNativeFeedbackP
     styleContainer?: StyleProp<ViewStyle>;
 }
 
-export class DefaultButton extends React.PureComponent<IButton> {
+export class Button extends React.PureComponent<IButton> {
     render(): ReactElement {
         const { screen, onPress, title, disabled, styleTitle, styleButton, styleContainer, ...other } = this.props;
 

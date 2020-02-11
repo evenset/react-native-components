@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactChild } from 'react';
 import { Animated, EmitterSubscription, Keyboard, KeyboardEvent, Platform } from 'react-native';
 
-export interface IAvoidKeyboard {
+export interface IKeyboardAvoider {
     scrollToEnd?: Function;
     children: ReactChild;
     styles?: {};
@@ -14,7 +14,7 @@ export interface IAvoidKeyboard {
  * This component does no animating on Android, which deals with keyboard avoiding on
  * it's own.
  */
-export class AvoidKeyboard extends React.Component<IAvoidKeyboard> {
+export class KeyboardAvoider extends React.Component<IKeyboardAvoider> {
     static defaultProps = {
         styles: {
             alignItems: 'stretch',
@@ -23,7 +23,7 @@ export class AvoidKeyboard extends React.Component<IAvoidKeyboard> {
         },
     };
 
-    constructor(props: IAvoidKeyboard) {
+    constructor(props: IKeyboardAvoider) {
         super(props);
 
         this.keyboardHeight = new Animated.Value(0);
