@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TextInput, TextInputProps, StyleProp, ViewStyle
 import { LocalizationConsumer } from './contexts/LocalizationContext';
 // TODO Remove material icon and use own icon component instead
 // @ts-ignore - Must be installed as a peer dependency
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'; // eslint-disable-line import/no-unresolved
 
 const styles = StyleSheet.create({
     text: {
