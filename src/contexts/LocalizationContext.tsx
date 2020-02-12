@@ -7,6 +7,9 @@ import memoize from 'lodash.memoize';
 type memoizeConfig = { [key: string]: string };
 
 const disabled = 'disabled';
+// Default i18n to be disabled
+i18n.locale = disabled;
+
 /**
  * Translation function, pass key matching the locale file and any params
  * Uses memoize for better performance
@@ -14,6 +17,7 @@ const disabled = 'disabled';
 
 export const translate = memoize(
     (key: string, config?: memoizeConfig) => {
+        console.log('Default locale is', i18n.locale);
         // If localization is not enabled, return the string as is
         if (i18n.locale === disabled) {
             return key;
