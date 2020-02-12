@@ -1,4 +1,4 @@
-import React, { createContext, ReactChild, ReactElement, memo } from 'react';
+import React, { createContext, ReactChild, ReactElement } from 'react';
 import { I18nManager } from 'react-native';
 import * as RNLocalize from 'react-native-localize';
 import i18n from 'i18n-js';
@@ -70,7 +70,7 @@ export const setI18nConfig: (
     const isRTL = setRTL ? setRTL : phoneSettings.isRTL;
 
     // Clear translation cache
-    translate.cache = new memoize.Cache;
+    translate.cache = new memoize.Cache; // eslint-disable-line new-parens, prettier/prettier
 
     // Set RTL
     I18nManager.forceRTL(isRTL);
