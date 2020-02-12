@@ -74,7 +74,7 @@ interface State {
 }
 
 export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
-    constructor(props: Readonly<Props>) {
+    constructor(props: Readonly<IPasswordInput>) {
         super(props);
 
         this.state = {
