@@ -1,6 +1,6 @@
 {
   "name": "@evenset/react-native-fundamental-components",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Commonly used react-native components",
   "main": "lib/index.js",
   "publishConfig": {
