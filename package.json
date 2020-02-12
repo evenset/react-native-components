@@ -35,7 +35,8 @@
   "types": "lib/index.d.ts",
   "peerDependencies": {
     "react-native": ">=0.60.0",
-    "react": ">=16.8.0"
+    "react": ">=16.8.0",
+    "react-native-vector-icons": ">= 6.6.0"
   },
   "dependencies": {
     "i18n-js": "3.5.1",

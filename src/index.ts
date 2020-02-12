@@ -7,5 +7,6 @@ export * from './TextField';
 export * from './Input';
 export * from './AvoidKeyboard';
 export * from './Button';
+export * from './PasswordInput';
 
 export { ModalController };
