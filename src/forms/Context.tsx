@@ -3,6 +3,7 @@
  * Each form gets access to its own context.
  */
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import * as yup from 'yup';
 
 export type FieldValue = string;

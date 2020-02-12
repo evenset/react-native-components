@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { StyleSheet, View, Text, TextInput, TextInputProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { LocalizationConsumer } from './contexts/LocalizationContext';
 // TODO Remove material icon and use own icon component instead
-// @ts-ignore - Must be installed as a peer dependency
+// @ts-ignore - react-native-vector-icons must be installed as a peer dependency
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'; // eslint-disable-line import/no-unresolved
 
 const styles = StyleSheet.create({
