@@ -1,4 +1,4 @@
-import React, { createContext, ReactChild, ReactElement } from 'react';
+import React, { createContext, ReactChild, ReactElement, memo } from 'react';
 import { I18nManager } from 'react-native';
 import * as RNLocalize from 'react-native-localize';
 import i18n from 'i18n-js';
@@ -15,11 +15,10 @@ i18n.locale = disabled;
  * Translation function, pass key matching the locale file and any params
  * Uses memoize for better performance
  */
-
 export const translate = memoize(
     (key: string, config?: memoizeConfig) => {
         // If localization is not enabled, return the string as is
-        if (i18n.locale === disabled) {
+        if (i18n.currentLocale() === disabled) {
             return key;
         }
 
@@ -71,9 +70,8 @@ export const setI18nConfig: (
     const isRTL = setRTL ? setRTL : phoneSettings.isRTL;
 
     // Clear translation cache
-    if (translate.cache.clear) {
-        translate.cache.clear();
-    }
+    translate.cache = new memoize.Cache;
+
     // Set RTL
     I18nManager.forceRTL(isRTL);
     // Set i18n-js config
