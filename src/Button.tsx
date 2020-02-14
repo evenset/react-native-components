@@ -53,16 +53,16 @@ const Touchable = (props: ITouchableProps): ReactElement => {
 
     if (Platform.OS === 'ios') {
         return (
-            <TouchableNativeFeedback disabled={disabled} onPress={onPress} style={style} {...other}>
+            <TouchableOpacity disabled={disabled} onPress={onPress} style={style} activeOpacity={activeOpacity} {...other}>
                 {props.children}
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
         );
     }
 
     return (
-        <TouchableOpacity disabled={disabled} onPress={onPress} style={style} activeOpacity={activeOpacity} {...other}>
+        <TouchableNativeFeedback disabled={disabled} onPress={onPress} style={style} {...other}>
             {props.children}
-        </TouchableOpacity>
+        </TouchableNativeFeedback>
     );
 };
 
