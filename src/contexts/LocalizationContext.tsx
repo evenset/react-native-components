@@ -83,7 +83,7 @@ export interface LocalizationInterface {
     translate: (key: string, config?: memoizeConfig) => string;
 }
 
-const LocalizationContext = createContext<LocalizationInterface>({ translate });
+export const LocalizationContext = createContext<LocalizationInterface>({ translate });
 
 export const LocalizationProvider = ({ children }: { children: ReactChild }): ReactElement => (
     <LocalizationContext.Provider value={{ translate }}>{children}</LocalizationContext.Provider>
