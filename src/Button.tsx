@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactChild } from 'react';
 import { LocalizationConsumer } from './contexts/LocalizationContext';
 import {
     TouchableOpacityProps,
@@ -45,8 +45,7 @@ export interface IButton extends TouchableOpacityProps, TouchableNativeFeedbackP
 }
 
 export interface ITouchableProps extends TouchableOpacityProps, TouchableNativeFeedbackProps {
-    activeOpacity?: number;
-    children: ReactElement;
+    children: ReactChild;
 }
 
 const Touchable = (props: ITouchableProps): ReactElement => {
