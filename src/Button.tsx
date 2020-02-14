@@ -14,8 +14,6 @@ import {
     Platform,
 } from 'react-native';
 
-const Touchable = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
-
 const styles = StyleSheet.create({
     // eslint-disable-next-line react-native/no-color-literals
     title: {
@@ -46,6 +44,29 @@ export interface IButton extends TouchableOpacityProps, TouchableNativeFeedbackP
     styleContainer?: StyleProp<ViewStyle>;
 }
 
+export interface ITouchableProps extends TouchableOpacityProps, TouchableNativeFeedbackProps {
+    activeOpacity?: number;
+    children: ReactElement;
+}
+
+const Touchable = (props: ITouchableProps): ReactElement => {
+    const { onPress, disabled, style, activeOpacity, ...other } = props;
+
+    if (Platform.OS === 'ios') {
+        return (
+            <TouchableNativeFeedback disabled={disabled} onPress={onPress} style={style} {...other}>
+                {props.children}
+            </TouchableNativeFeedback>
+        );
+    }
+
+    return (
+        <TouchableOpacity disabled={disabled} onPress={onPress} style={style} activeOpacity={activeOpacity} {...other}>
+            {props.children}
+        </TouchableOpacity>
+    );
+};
+
 export class Button extends React.PureComponent<IButton> {
     render(): ReactElement {
         const { screen, onPress, title, disabled, styleTitle, styleButton, styleContainer, ...other } = this.props;
@@ -54,8 +75,6 @@ export class Button extends React.PureComponent<IButton> {
             <LocalizationConsumer>
                 {({ translate }): ReactElement => (
                     <View style={[styles.container, styleContainer]}>
-                        {/*
-                        // @ts-ignore */}
                         <Touchable
                             disabled={disabled}
                             style={[styles.button, styleButton]}
