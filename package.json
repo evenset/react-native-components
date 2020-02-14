@@ -9,7 +9,10 @@
   "scripts": {
     "postversion": "git push && git push --tags",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf ./lib && tsc && echo 'Finished building NPM package'",
+    "build": "rm -rf ./lib && tsc",
+    "build-lib": "npm run build && npm run rm-lib && npm run move-lib",
+    "rm-lib": "rm -rf ../rn-boilerplate/node_modules/@evenset/react-native-fundamental-components/lib",
+    "move-lib": "cp -rf ./lib ../rn-boilerplate/node_modules/@evenset/react-native-fundamental-components/",
     "build:check": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "tsc": "tsc --noEmit"
