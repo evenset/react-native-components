@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactChild } from 'react';
 import { LocalizationConsumer } from './contexts/LocalizationContext';
 import {
     TouchableOpacityProps,
@@ -13,8 +13,6 @@ import {
     TextStyle,
     Platform,
 } from 'react-native';
-
-const Touchable = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
 
 const styles = StyleSheet.create({
     // eslint-disable-next-line react-native/no-color-literals
@@ -46,6 +44,28 @@ export interface IButton extends TouchableOpacityProps, TouchableNativeFeedbackP
     styleContainer?: StyleProp<ViewStyle>;
 }
 
+export interface ITouchableProps extends TouchableOpacityProps, TouchableNativeFeedbackProps {
+    children: ReactChild;
+}
+
+const Touchable = (props: ITouchableProps): ReactElement => {
+    const { onPress, disabled, style, activeOpacity, ...other } = props;
+
+    if (Platform.OS === 'ios') {
+        return (
+            <TouchableOpacity disabled={disabled} onPress={onPress} style={style} activeOpacity={activeOpacity} {...other}>
+                {props.children}
+            </TouchableOpacity>
+        );
+    }
+
+    return (
+        <TouchableNativeFeedback disabled={disabled} onPress={onPress} style={style} {...other}>
+            {props.children}
+        </TouchableNativeFeedback>
+    );
+};
+
 export class Button extends React.PureComponent<IButton> {
     render(): ReactElement {
         const { screen, onPress, title, disabled, styleTitle, styleButton, styleContainer, ...other } = this.props;
@@ -54,8 +74,6 @@ export class Button extends React.PureComponent<IButton> {
             <LocalizationConsumer>
                 {({ translate }): ReactElement => (
                     <View style={[styles.container, styleContainer]}>
-                        {/*
-                        // @ts-ignore */}
                         <Touchable
                             disabled={disabled}
                             style={[styles.button, styleButton]}
