@@ -25,7 +25,7 @@ After creating one, the easiest way to test your changes is:
 1. Refresh your app using the built-in react-native refresh menu
 
 ### Using build scripts:
-1. In the `package.json` Add or update path to `react-native-fundamental-components/lib` and path to `app/node_modules/@evenset/react-native-fundamentals/lib` for scripts `move-lib` and `rm-lib`
+1. In the `package.json` add or update path to `react-native-fundamental-components/lib` and path to `app/node_modules/@evenset/react-native-fundamentals/lib` for scripts `move-lib` and `rm-lib`
 2. Run `npm install` in your `app/`
 3. `npm run build-lib`
 
