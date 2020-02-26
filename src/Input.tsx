@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: 'grey',
         width: '80%',
+        minHeight: 40,
     },
     // eslint-disable-next-line react-native/no-color-literals
     error: {

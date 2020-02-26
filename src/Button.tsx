@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
 export interface IButton extends TouchableOpacityProps, TouchableNativeFeedbackProps {
     screen?: string;
     title: string;
+    interpolateVals: { [key: string]: string };
     styleButton?: StyleProp<ViewStyle>;
     styleTitle?: StyleProp<TextStyle>;
     styleContainer?: StyleProp<ViewStyle>;
@@ -67,8 +68,12 @@ const Touchable = (props: ITouchableProps): ReactElement => {
 };
 
 export class Button extends React.PureComponent<IButton> {
+    static defaultProps = {
+        interpolateVals: {},
+    };
+
     render(): ReactElement {
-        const { screen, onPress, title, disabled, styleTitle, styleButton, styleContainer, ...other } = this.props;
+        const { screen, onPress, title, interpolateVals, disabled, styleTitle, styleButton, styleContainer, ...other } = this.props;
 
         return (
             <LocalizationConsumer>
@@ -87,7 +92,7 @@ export class Button extends React.PureComponent<IButton> {
                                 disabled={disabled}
                                 style={disabled ? [styles.disabledTitle, styles.title, styleTitle] : [styles.title, styleTitle]}
                             >
-                                {translate(`${screen}.${title}`)}
+                                {translate(`${screen}.${title}`, interpolateVals)}
                             </Text>
                         </Touchable>
                     </View>

@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         // FIXME: Move to color stylesheet once it is implemented
         backgroundColor: 'grey',
         width: '80%',
+        minHeight: 40,
     },
     eye: {
         marginTop: 8.5,
