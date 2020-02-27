@@ -55,7 +55,7 @@ export const FormPasswordField = React.memo(
                             value={value}
                             onChange={changeHandler}
                             onBlur={blurHandler}
-                            errorMessage={translate(`${error}.formErrors`)}
+                            errorMessage={translate(`formErrors.${error}`)}
                             {...rest}
                         />
                     )}
