@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
 });
 
 export interface IPasswordInput extends TextInputProps {
-    screen?: string;
     styleText?: StyleProp<TextStyle>;
     styleLabel?: StyleProp<TextStyle>;
     styleRow?: StyleProp<ViewStyle>;
@@ -63,7 +62,6 @@ export interface IPasswordInput extends TextInputProps {
     placeholder?: string;
     secureTextEntry?: boolean;
     errorMessage?: string;
-    errorMessageScreen?: string;
     styleError?: StyleProp<TextStyle>;
     styleColumn?: StyleProp<ViewStyle>;
     styleErrorRow?: StyleProp<ViewStyle>;
@@ -92,7 +90,6 @@ export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
 
     render(): ReactElement {
         const {
-            screen,
             styleLabel,
             styleRow,
             styleText,
@@ -100,7 +97,6 @@ export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
             label,
             placeholder,
             errorMessage,
-            errorMessageScreen,
             styleError,
             styleColumn,
             styleErrorRow,

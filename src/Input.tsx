@@ -43,8 +43,6 @@ const styles = StyleSheet.create({
 });
 
 export interface IInput extends TextInputProps {
-    screen?: string;
-    errorMessageScreen?: string;
     label?: string;
     styleText?: StyleProp<TextStyle>;
     styleLabel?: StyleProp<TextStyle>;
