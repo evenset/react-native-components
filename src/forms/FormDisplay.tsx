@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { LocalizationConsumer } from '../';
 
 import { connect } from './Connect';
 import { TextField, ITextField } from '../TextField';
@@ -6,6 +7,7 @@ import { FormContext } from './Context';
 
 interface Props extends ITextField {
     id: string;
+    screen?: string;
     type?: 'value' | 'error' | undefined;
     form: FormContext;
 }
@@ -18,14 +20,24 @@ interface Props extends ITextField {
 export const FormDisplay = React.memo(
     connect(
         (props: Props): ReactElement => {
-            const { form, id, type, ...rest } = props;
+            const { form, screen, id, type, ...rest } = props;
             let value = form.getField(id);
 
             if (type === 'error') {
-                value = form.getError(id);
+                if (screen) {
+                    value =`${screen}.${form.getError(id)}`;
+                } else {
+                    value = form.getError(id);
+                }                
             }
 
-            return <TextField {...rest} value={value} />;
+            return (
+                <LocalizationConsumer>
+                    {({ translate }): ReactElement => (
+                        <TextField {...rest} value={translate(value)} />   
+                    )}
+                </LocalizationConsumer>                
+            );
         },
     ),
 );
