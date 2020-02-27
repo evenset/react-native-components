@@ -25,18 +25,16 @@ export const FormDisplay = React.memo(
 
             if (type === 'error') {
                 if (screen) {
-                    value =`${screen}.${form.getError(id)}`;
+                    value = `${screen}.${form.getError(id)}`;
                 } else {
                     value = form.getError(id);
-                }                
+                }
             }
 
             return (
                 <LocalizationConsumer>
-                    {({ translate }): ReactElement => (
-                        <TextField {...rest} value={translate(value)} />   
-                    )}
-                </LocalizationConsumer>                
+                    {({ translate }): ReactElement => <TextField {...rest} value={translate(value)} />}
+                </LocalizationConsumer>
             );
         },
     ),

@@ -136,7 +136,7 @@ export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
                     </View>
                 </View>
                 <View style={[styles.errorRow, styleErrorRow]}>
-                    <View style={[{width: errorWidth}, styleInnerErrorRow]}>
+                    <View style={[{ width: errorWidth }, styleInnerErrorRow]}>
                         <Text style={[styles.error, styleError]}>{errorMessage}</Text>
                     </View>
                 </View>

@@ -50,7 +50,6 @@ export const FormPasswordField = React.memo(
             return (
                 <LocalizationConsumer>
                     {({ translate }): ReactElement => (
-
                         <PasswordInput
                             value={value}
                             onChange={changeHandler}
