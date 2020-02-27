@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
-import { LocalizationConsumer } from '../';
 
 import { connect } from './Connect';
 import { FormContext } from './Context';
@@ -48,17 +47,13 @@ export const FormField = React.memo(
             const error = form.getError(id);
 
             return (
-                <LocalizationConsumer>
-                    {({ translate }): ReactElement => (
-                        <Input
-                            value={value}
-                            onChange={changeHandler}
-                            onBlur={blurHandler}
-                            errorMessage={translate(`formErrors.${error}`)}
-                            {...rest}
-                        />
-                    )}
-                </LocalizationConsumer>
+                <Input
+                    value={value}
+                    onChange={changeHandler}
+                    onBlur={blurHandler}
+                    errorMessage={error}
+                    {...rest}
+                />
             );
         },
     ),
