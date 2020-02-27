@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { StyleSheet, View, Text, TextInput, TextInputProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import { LocalizationConsumer } from './contexts/LocalizationContext';
 // TODO Remove material icon and use own icon component instead
 // @ts-ignore - react-native-vector-icons must be installed as a peer dependency
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'; // eslint-disable-line import/no-unresolved
@@ -109,44 +108,39 @@ export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
         } = this.props;
         const { hideTextEntry } = this.state;
         const name = hideTextEntry ? 'visibility-off' : 'visibility';
-        const errorScreen = errorMessageScreen ? errorMessageScreen : screen;
 
         return (
-            <LocalizationConsumer>
-                {({ translate }): ReactElement => (
-                    <View style={[styles.column, styleColumn]}>
-                        <View style={[styles.row, styleRow]}>
-                            {label ? <Text style={[styles.label, styleLabel]}>{translate(`${screen}.${label}`)}</Text> : null}
-                            <View style={[styles.bubble, styleBubble]}>
-                                <TextInput
-                                    autoCapitalize="none"
-                                    autoCompleteType="password"
-                                    textContentType="password"
-                                    placeholderTextColor="lightgrey"
-                                    {...other}
-                                    placeholder={translate(`${screen}.${placeholder}`)}
-                                    style={[styles.text, styleText]}
-                                    secureTextEntry={hideTextEntry}
-                                    autoCorrect={false}
-                                />
-                                <MaterialIcon
-                                    style={styles.eye}
-                                    size={24}
-                                    color="rgba(0, 0, 0, .38)"
-                                    onPress={this.onAccessoryPress}
-                                    suppressHighlighting
-                                    name={name}
-                                />
-                            </View>
-                        </View>
-                        <View style={[styles.errorRow, styleErrorRow]}>
-                            <Text style={[styles.error, styleError]}>
-                                {Boolean(errorMessage) ? translate(`${errorScreen}.${errorMessage}`) : ''}
-                            </Text>
-                        </View>
+            <View style={[styles.column, styleColumn]}>
+                <View style={[styles.row, styleRow]}>
+                    {label ? <Text style={[styles.label, styleLabel]}>{label}</Text> : null}
+                    <View style={[styles.bubble, styleBubble]}>
+                        <TextInput
+                            autoCapitalize="none"
+                            autoCompleteType="password"
+                            textContentType="password"
+                            placeholderTextColor="lightgrey"
+                            {...other}
+                            placeholder={placeholder}
+                            style={[styles.text, styleText]}
+                            secureTextEntry={hideTextEntry}
+                            autoCorrect={false}
+                        />
+                        <MaterialIcon
+                            style={styles.eye}
+                            size={24}
+                            color="rgba(0, 0, 0, .38)"
+                            onPress={this.onAccessoryPress}
+                            suppressHighlighting
+                            name={name}
+                        />
                     </View>
-                )}
-            </LocalizationConsumer>
+                </View>
+                <View style={[styles.errorRow, styleErrorRow]}>
+                    <Text style={[styles.error, styleError]}>
+                        {Boolean(errorMessage) ? errorMessage : ''}
+                    </Text>
+                </View>
+            </View>
         );
     }
 }
