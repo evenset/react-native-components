@@ -1,5 +1,4 @@
 import React, { ReactElement, ReactChild } from 'react';
-import { LocalizationConsumer } from './contexts/LocalizationContext';
 import {
     TouchableOpacityProps,
     TouchableOpacity,
@@ -37,9 +36,7 @@ const styles = StyleSheet.create({
 });
 
 export interface IButton extends TouchableOpacityProps, TouchableNativeFeedbackProps {
-    screen?: string;
     title: string;
-    interpolateVals: { [key: string]: string };
     styleButton?: StyleProp<ViewStyle>;
     styleTitle?: StyleProp<TextStyle>;
     styleContainer?: StyleProp<ViewStyle>;
@@ -68,36 +65,22 @@ const Touchable = (props: ITouchableProps): ReactElement => {
 };
 
 export class Button extends React.PureComponent<IButton> {
-    static defaultProps = {
-        interpolateVals: {},
-    };
-
     render(): ReactElement {
-        const { screen, onPress, title, interpolateVals, disabled, styleTitle, styleButton, styleContainer, ...other } = this.props;
+        const { onPress, title, disabled, styleTitle, styleButton, styleContainer, ...other } = this.props;
 
         return (
-            <LocalizationConsumer>
-                {({ translate }): ReactElement => (
-                    <View style={[styles.container, styleContainer]}>
-                        <Touchable
-                            disabled={disabled}
-                            style={[styles.button, styleButton]}
-                            onPress={onPress}
-                            activeOpacity={0.7}
-                            {...other}
-                        >
-                            <Text
-                                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                                // @ts-ignore
-                                disabled={disabled}
-                                style={disabled ? [styles.disabledTitle, styles.title, styleTitle] : [styles.title, styleTitle]}
-                            >
-                                {translate(`${screen}.${title}`, interpolateVals)}
-                            </Text>
-                        </Touchable>
-                    </View>
-                )}
-            </LocalizationConsumer>
+            <View style={[styles.container, styleContainer]}>
+                <Touchable disabled={disabled} style={[styles.button, styleButton]} onPress={onPress} activeOpacity={0.7} {...other}>
+                    <Text
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                        // @ts-ignore
+                        disabled={disabled}
+                        style={disabled ? [styles.disabledTitle, styles.title, styleTitle] : [styles.title, styleTitle]}
+                    >
+                        {title}
+                    </Text>
+                </Touchable>
+            </View>
         );
     }
 }
