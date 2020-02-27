@@ -24,11 +24,11 @@ export const FormDisplay = React.memo(
             let value = form.getField(id);
 
             if (type === 'error') {
-                if (screen) {
-                    value = `${screen}.${form.getError(id)}`;
-                } else {
-                    value = form.getError(id);
-                }
+                value = form.getError(id);
+            }
+
+            if (screen) {
+                value = `${screen}.${value}`;
             }
 
             return (
