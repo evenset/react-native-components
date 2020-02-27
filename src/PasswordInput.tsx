@@ -65,6 +65,7 @@ export interface IPasswordInput extends TextInputProps {
     styleError?: StyleProp<TextStyle>;
     styleColumn?: StyleProp<ViewStyle>;
     styleErrorRow?: StyleProp<ViewStyle>;
+    styleInnerErrorRow?: StyleProp<ViewStyle>;
 }
 
 interface State {
@@ -100,10 +101,13 @@ export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
             styleError,
             styleColumn,
             styleErrorRow,
+            styleInnerErrorRow,
             ...other
         } = this.props;
         const { hideTextEntry } = this.state;
         const name = hideTextEntry ? 'visibility-off' : 'visibility';
+
+        const errorWidth = StyleSheet.flatten(styleBubble)?.width ? StyleSheet.flatten(styleBubble).width : styles.bubble.width;
 
         return (
             <View style={[styles.column, styleColumn]}>
@@ -132,9 +136,9 @@ export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
                     </View>
                 </View>
                 <View style={[styles.errorRow, styleErrorRow]}>
-                    <Text style={[styles.error, styleError]}>
-                        {errorMessage}
-                    </Text>
+                    <View style={[{width: errorWidth}, styleInnerErrorRow]}>
+                        <Text style={[styles.error, styleError]}>{errorMessage}</Text>
+                    </View>
                 </View>
             </View>
         );

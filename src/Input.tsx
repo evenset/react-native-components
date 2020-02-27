@@ -72,10 +72,7 @@ export class Input extends React.PureComponent<IInput> {
             ...other
         } = this.props;
 
-        // Adjusts the styling of the error message to match the placement of the input field automatically.
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore: ViewStyle should have a width element but TS is not picking it up correctly
-        const errorWidth = styleBubble && styleBubble.width ? styleBubble.width : styles.bubble.width;
+        const errorWidth = StyleSheet.flatten(styleBubble)?.width ? StyleSheet.flatten(styleBubble).width : styles.bubble.width;
 
         return (
             <View style={[styles.column, styleColumn]}>
