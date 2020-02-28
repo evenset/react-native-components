@@ -26,9 +26,7 @@ export const FormDisplay = React.memo(
                 value = form.getError(id);
             }
 
-            return (
-                <TextField {...rest} value={value} />
-            );
+            return <TextField {...rest} value={value} />;
         },
     ),
 );

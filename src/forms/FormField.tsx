@@ -46,15 +46,7 @@ export const FormField = React.memo(
             const value = form.getField(id);
             const error = form.getError(id);
 
-            return (
-                <Input
-                    value={value}
-                    onChange={changeHandler}
-                    onBlur={blurHandler}
-                    errorMessage={error}
-                    {...rest}
-                />
-            );
+            return <Input value={value} onChange={changeHandler} onBlur={blurHandler} errorMessage={error} {...rest} />;
         },
     ),
 );

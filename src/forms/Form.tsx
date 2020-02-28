@@ -3,7 +3,6 @@ import React, { ReactElement, ReactNode } from 'react';
 import * as yup from 'yup';
 
 import { FormProvider, FieldValue } from './Context';
-import { translate } from '../';
 
 type ValueList = {
     [key: string]: FieldValue;
@@ -18,6 +17,7 @@ export type stateSetter = (s: string) => void;
 
 export interface IForm {
     schema: yup.ObjectSchema;
+    defaultFormError: string;
     initialValues: { [key: string]: string };
     children: ReactNode;
 }
@@ -64,8 +64,6 @@ const yupValidateForm = async (schema: yup.ObjectSchema, formData: ValueList): P
     }
 };
 
-export const defaultFormError = 'defaultFormError';
-
 /**
  * Form Component
  * This component is intended to wrap any forms built in the application.
@@ -74,6 +72,10 @@ export const defaultFormError = 'defaultFormError';
  * See Form.md for more details.
  */
 export class Form extends React.PureComponent<IForm, State> {
+    static defaultProps = {
+        defaultFormError: 'Please fix all errors before submitting!',
+    };
+
     constructor(props: IForm) {
         super(props);
 
@@ -109,6 +111,7 @@ export class Form extends React.PureComponent<IForm, State> {
      */
     getError(id: string): FieldValue {
         const { errorList } = this.state;
+
         return errorList[id] || '';
     }
 
@@ -143,7 +146,7 @@ export class Form extends React.PureComponent<IForm, State> {
      * Validates the entire form and sets each fields error approriately.
      */
     async validateForm(): Promise<void> {
-        const { schema } = this.props;
+        const { schema, defaultFormError } = this.props;
         const { valueList } = this.state;
         const result = await yupValidateForm(schema, valueList);
 
@@ -152,7 +155,7 @@ export class Form extends React.PureComponent<IForm, State> {
                 this.setError(path, errors[0]);
             });
 
-            this.setError('formError', translate(`formErrors.${defaultFormError}`));
+            this.setError('formError', defaultFormError);
         } else {
             this.setError('formError', '');
         }
