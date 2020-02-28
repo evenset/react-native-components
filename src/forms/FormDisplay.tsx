@@ -6,7 +6,6 @@ import { FormContext } from './Context';
 
 interface Props extends ITextField {
     id: string;
-    screen?: string;
     type?: 'value' | 'error' | undefined;
     form: FormContext;
 }
