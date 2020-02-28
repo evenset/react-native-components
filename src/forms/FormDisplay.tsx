@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { LocalizationConsumer } from '../';
 
 import { connect } from './Connect';
 import { TextField, ITextField } from '../TextField';
@@ -20,21 +19,15 @@ interface Props extends ITextField {
 export const FormDisplay = React.memo(
     connect(
         (props: Props): ReactElement => {
-            const { form, screen, id, type, ...rest } = props;
+            const { form, id, type, ...rest } = props;
             let value = form.getField(id);
 
             if (type === 'error') {
                 value = form.getError(id);
             }
 
-            if (screen) {
-                value = `${screen}.${value}`;
-            }
-
             return (
-                <LocalizationConsumer>
-                    {({ translate }): ReactElement => <TextField {...rest} value={translate(value)} />}
-                </LocalizationConsumer>
+                <TextField {...rest} value={value} />
             );
         },
     ),

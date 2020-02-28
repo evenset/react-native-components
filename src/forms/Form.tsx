@@ -3,6 +3,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import * as yup from 'yup';
 
 import { FormProvider, FieldValue } from './Context';
+import { translate } from '../';
 
 type ValueList = {
     [key: string]: FieldValue;
@@ -108,7 +109,6 @@ export class Form extends React.PureComponent<IForm, State> {
      */
     getError(id: string): FieldValue {
         const { errorList } = this.state;
-
         return errorList[id] || '';
     }
 
@@ -152,7 +152,7 @@ export class Form extends React.PureComponent<IForm, State> {
                 this.setError(path, errors[0]);
             });
 
-            this.setError('formError', defaultFormError);
+            this.setError('formError', translate(`formErrors.${defaultFormError}`));
         } else {
             this.setError('formError', '');
         }
