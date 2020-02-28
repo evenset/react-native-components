@@ -72,6 +72,7 @@ export const setI18nConfig: (
     // Clear translation cache
     translate.cache = new memoize.Cache; // eslint-disable-line new-parens, prettier/prettier
 
+    i18n.defaultLocale = 'en';
     // Set RTL
     I18nManager.forceRTL(isRTL);
     // Set i18n-js config
