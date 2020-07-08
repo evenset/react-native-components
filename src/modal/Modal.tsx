@@ -159,13 +159,13 @@ export class Modal extends React.PureComponent<IModal, State> {
                             },
                         ]}
                     />
-                    <ScrollView contentContainerStyle={[styles.container, containerStyle]} centerContent>
+                    <ScrollView contentContainerStyle={styles.container} centerContent>
                         <TouchableWithoutFeedback
                             disabled={disableCloseOnTap}
                             onPress={closeModal}
                             hitSlop={{ bottom: 50, top: 50, left: 40, right: 40 }}
                         >
-                            <View style={styles.container}>
+                            <View style={[styles.container, containerStyle]}>
                                 <Animated.View style={[styles.modalContainer, animStyle]}>
                                     <View
                                         style={[styles.innerContainer, styleInnerContainer]}
