@@ -38,13 +38,12 @@ class ModalController {
      * @param name the name identifying the modal
      */
     open(name: string): void {
-        if (this.modals[name] instanceof Modal) {
-            this.modals[name].setState({ visible: true });
-            Animated.timing(this.modals[name].state.animValue, {
-                toValue: 0,
-                duration: 500,
-            }).start();
-        }
+        this.modals[name].setState({ visible: true });
+        Animated.timing(this.modals[name].state.animValue, {
+            toValue: 0,
+            duration: 500,
+            useNativeDriver: true,
+        }).start();
     }
 
     /**
@@ -52,20 +51,19 @@ class ModalController {
      * @param name the name identifying the modal
      */
     close(name: string): void {
-        if (this.modals[name] instanceof Modal) {
-            Animated.timing(this.modals[name].state.animValue, {
-                toValue: 1,
-                duration: 500,
-            }).start(() => {
-                // iOS navigation cancels the animation, so this it to make sure
-                // that the value is still set to what it should be, otherwise
-                // it will mess up the next open animation
-                InteractionManager.runAfterInteractions(() => {
-                    this.modals[name].state.animValue.setValue(1);
-                    this.modals[name].setState({ visible: false });
-                });
+        Animated.timing(this.modals[name].state.animValue, {
+            toValue: 1,
+            duration: 100,
+            useNativeDriver: true,
+        }).start(() => {
+            // iOS navigation cancels the animation, so this it to make sure
+            // that the value is still set to what it should be, otherwise
+            // it will mess up the next open animation
+            InteractionManager.runAfterInteractions(() => {
+                this.modals[name].state.animValue.setValue(1);
+                this.modals[name].setState({ visible: false });
             });
-        }
+        });
     }
 
     /**
