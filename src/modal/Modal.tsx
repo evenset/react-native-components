@@ -57,6 +57,7 @@ export interface IModal extends ModalProps {
      */
     disableCloseOnTap?: boolean;
     styleInnerContainer?: object;
+    containerStyle?: object;
     children: ReactChild;
 }
 
@@ -97,6 +98,7 @@ export class Modal extends React.PureComponent<IModal, State> {
             backgroundStyle,
             disableCloseOnTap,
             name,
+            containerStyle,
             styleInnerContainer,
             children,
             onRequestClose,
@@ -163,7 +165,7 @@ export class Modal extends React.PureComponent<IModal, State> {
                         onPress={closeModal}
                         hitSlop={{ bottom: 50, top: 50, left: 40, right: 40 }}
                     >
-                        <View style={styles.container}>
+                        <View style={[styles.container, containerStyle]}>
                             <Animated.View style={[styles.modalContainer, animStyle]}>
                                 <ScrollView
                                     style={[styleInnerContainer]}
