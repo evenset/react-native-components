@@ -53,9 +53,6 @@ const styles = StyleSheet.create({
         marginLeft: '20%',
         alignContent: 'center',
     },
-    modal: {
-
-    },
     modalInner: {
         backgroundColor: 'white',
         borderRadius: 10,
@@ -168,7 +165,7 @@ export class SelectInput extends React.PureComponent<ISelectInput, State> {
                                 />
                                 <Modal
                                     name={modalName}
-                                    backgroundStyle={[styles.modal, backgroundStyle]}
+                                    backgroundStyle={[backgroundStyle]}
                                     disableCloseOnTap={disableCloseOnTap}
                                     styleInnerContainer={[styles.modalInner, styleInnerContainer]}
                                 >
