@@ -2,6 +2,7 @@ import React, { ReactElement, ReactChild } from 'react';
 import { Animated, Dimensions, Modal as RNModal, ModalProps, ScrollView, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 
 import controller from './controller';
+export { controller as ModalController};
 
 const styles = StyleSheet.create({
     // eslint-disable-next-line react-native/no-color-literals
@@ -24,12 +25,12 @@ const styles = StyleSheet.create({
     },
     modalContainer: {
         flexDirection: 'row',
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
     innerContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        padding: 20,
     },
 });
 
@@ -159,26 +160,26 @@ export class Modal extends React.PureComponent<IModal, State> {
                             },
                         ]}
                     />
-                    <ScrollView contentContainerStyle={styles.container} centerContent>
-                        <TouchableWithoutFeedback
-                            disabled={disableCloseOnTap}
-                            onPress={closeModal}
-                            hitSlop={{ bottom: 50, top: 50, left: 40, right: 40 }}
-                        >
-                            <View style={[styles.container, containerStyle]}>
-                                <Animated.View style={[styles.modalContainer, animStyle]}>
-                                    <View
-                                        style={[styles.innerContainer, styleInnerContainer]}
-                                        // this stops touch events on this inner view
-                                        // from propagating to the parent
-                                        onStartShouldSetResponder={(): boolean => true}
-                                    >
-                                        {children}
-                                    </View>
-                                </Animated.View>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </ScrollView>
+                    <TouchableWithoutFeedback
+                        disabled={disableCloseOnTap}
+                        onPress={closeModal}
+                        hitSlop={{ bottom: 50, top: 50, left: 40, right: 40 }}
+                    >
+                        <View style={[styles.container, containerStyle]}>
+                            <Animated.View style={[styles.modalContainer, animStyle]}>
+                                <ScrollView
+                                    style={[styleInnerContainer]}
+                                    // this stops touch events on this inner view
+                                    // from propagating to the parent
+                                    onStartShouldSetResponder={(): boolean => true}
+                                    centerContent
+                                    contentContainerStyle={styles.innerContainer}
+                                >
+                                    {children}
+                                </ScrollView>
+                            </Animated.View>
+                        </View>
+                    </TouchableWithoutFeedback>
                 </View>
             </RNModal>
         );
