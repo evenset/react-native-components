@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { StyleSheet, View, Text, TextInput, TextInputProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import { LocalizationConsumer } from './contexts/LocalizationContext';
 
 const styles = StyleSheet.create({
     text: {
@@ -25,6 +24,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: 'grey',
         width: '80%',
+        minHeight: 40,
     },
     // eslint-disable-next-line react-native/no-color-literals
     error: {
@@ -43,8 +43,6 @@ const styles = StyleSheet.create({
 });
 
 export interface IInput extends TextInputProps {
-    screen?: string;
-    errorMessageScreen?: string;
     label?: string;
     styleText?: StyleProp<TextStyle>;
     styleLabel?: StyleProp<TextStyle>;
@@ -60,7 +58,6 @@ export interface IInput extends TextInputProps {
 export class Input extends React.PureComponent<IInput> {
     render(): ReactElement {
         const {
-            screen,
             styleLabel,
             styleRow,
             styleText,
@@ -68,7 +65,6 @@ export class Input extends React.PureComponent<IInput> {
             label,
             placeholder,
             errorMessage,
-            errorMessageScreen,
             styleError,
             styleColumn,
             styleErrorRow,
@@ -76,35 +72,27 @@ export class Input extends React.PureComponent<IInput> {
             ...other
         } = this.props;
 
-        // Adjusts the styling of the error message to match the placement of the input field automatically.
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore: ViewStyle should have a width element but TS is not picking it up correctly
-        const errorWidth = styleBubble && styleBubble.width ? styleBubble.width : styles.bubble.width;
-        const errorScreen = errorMessageScreen ? errorMessageScreen : screen;
+        const errorWidth = StyleSheet.flatten(styleBubble)?.width ? StyleSheet.flatten(styleBubble).width : styles.bubble.width;
 
         return (
-            <LocalizationConsumer>
-                {({ translate }): ReactElement => (
-                    <View style={[styles.column, styleColumn]}>
-                        <View style={[styles.row, styleRow]}>
-                            {label ? <Text style={[styles.label, styleLabel]}>{translate(`${screen}.${label}`)}</Text> : null}
-                            <View style={[styles.bubble, styleBubble]}>
-                                <TextInput
-                                    placeholderTextColor="lightgrey"
-                                    {...other}
-                                    placeholder={translate(`${screen}.${placeholder}`)}
-                                    style={[styles.text, styleText]}
-                                ></TextInput>
-                            </View>
-                        </View>
-                        <View style={[styles.errorRow, styleErrorRow]}>
-                            <View style={[{ width: errorWidth }, styleInnerErrorRow]}>
-                                <Text style={[styles.error, styleError]}>{translate(`${errorScreen}.${errorMessage}`)}</Text>
-                            </View>
-                        </View>
+            <View style={[styles.column, styleColumn]}>
+                <View style={[styles.row, styleRow]}>
+                    {label ? <Text style={[styles.label, styleLabel]}>{label}</Text> : null}
+                    <View style={[styles.bubble, styleBubble]}>
+                        <TextInput
+                            placeholderTextColor="lightgrey"
+                            {...other}
+                            placeholder={placeholder}
+                            style={[styles.text, styleText]}
+                        ></TextInput>
                     </View>
-                )}
-            </LocalizationConsumer>
+                </View>
+                <View style={[styles.errorRow, styleErrorRow]}>
+                    <View style={[{ width: errorWidth }, styleInnerErrorRow]}>
+                        <Text style={[styles.error, styleError]}>{errorMessage}</Text>
+                    </View>
+                </View>
+            </View>
         );
     }
 }

@@ -46,16 +46,7 @@ export const FormPasswordField = React.memo(
             const value = form.getField(id);
             const error = form.getError(id);
 
-            return (
-                <PasswordInput
-                    value={value}
-                    onChange={changeHandler}
-                    onBlur={blurHandler}
-                    errorMessage={error}
-                    errorMessageScreen="formErrors"
-                    {...rest}
-                />
-            );
+            return <PasswordInput value={value} onChange={changeHandler} onBlur={blurHandler} errorMessage={error} {...rest} />;
         },
     ),
 );

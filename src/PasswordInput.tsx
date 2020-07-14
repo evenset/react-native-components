@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { StyleSheet, View, Text, TextInput, TextInputProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import { LocalizationConsumer } from './contexts/LocalizationContext';
 // TODO Remove material icon and use own icon component instead
 // @ts-ignore - react-native-vector-icons must be installed as a peer dependency
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'; // eslint-disable-line import/no-unresolved
@@ -29,6 +28,7 @@ const styles = StyleSheet.create({
         // FIXME: Move to color stylesheet once it is implemented
         backgroundColor: 'grey',
         width: '80%',
+        minHeight: 40,
     },
     eye: {
         marginTop: 8.5,
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
 });
 
 export interface IPasswordInput extends TextInputProps {
-    screen?: string;
     styleText?: StyleProp<TextStyle>;
     styleLabel?: StyleProp<TextStyle>;
     styleRow?: StyleProp<ViewStyle>;
@@ -63,10 +62,10 @@ export interface IPasswordInput extends TextInputProps {
     placeholder?: string;
     secureTextEntry?: boolean;
     errorMessage?: string;
-    errorMessageScreen?: string;
     styleError?: StyleProp<TextStyle>;
     styleColumn?: StyleProp<ViewStyle>;
     styleErrorRow?: StyleProp<ViewStyle>;
+    styleInnerErrorRow?: StyleProp<ViewStyle>;
 }
 
 interface State {
@@ -92,7 +91,6 @@ export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
 
     render(): ReactElement {
         const {
-            screen,
             styleLabel,
             styleRow,
             styleText,
@@ -100,52 +98,49 @@ export class PasswordInput extends React.PureComponent<IPasswordInput, State> {
             label,
             placeholder,
             errorMessage,
-            errorMessageScreen,
             styleError,
             styleColumn,
             styleErrorRow,
+            styleInnerErrorRow,
             ...other
         } = this.props;
         const { hideTextEntry } = this.state;
         const name = hideTextEntry ? 'visibility-off' : 'visibility';
-        const errorScreen = errorMessageScreen ? errorMessageScreen : screen;
+
+        const errorWidth = StyleSheet.flatten(styleBubble)?.width ? StyleSheet.flatten(styleBubble).width : styles.bubble.width;
 
         return (
-            <LocalizationConsumer>
-                {({ translate }): ReactElement => (
-                    <View style={[styles.column, styleColumn]}>
-                        <View style={[styles.row, styleRow]}>
-                            {label ? <Text style={[styles.label, styleLabel]}>{translate(`${screen}.${label}`)}</Text> : null}
-                            <View style={[styles.bubble, styleBubble]}>
-                                <TextInput
-                                    autoCapitalize="none"
-                                    autoCompleteType="password"
-                                    textContentType="password"
-                                    placeholderTextColor="lightgrey"
-                                    {...other}
-                                    placeholder={translate(`${screen}.${placeholder}`)}
-                                    style={[styles.text, styleText]}
-                                    secureTextEntry={hideTextEntry}
-                                    autoCorrect={false}
-                                />
-                                <MaterialIcon
-                                    style={styles.eye}
-                                    size={24}
-                                    color="rgba(0, 0, 0, .38)"
-                                    onPress={this.onAccessoryPress}
-                                    suppressHighlighting
-                                    name={name}
-                                />
-                            </View>
-                        </View>
-                        <View style={[styles.errorRow, styleErrorRow]}>
-                            <Text style={[styles.error, styleError]}>
-                                {Boolean(errorMessage) ? translate(`${errorScreen}.${errorMessage}`) : ''}
-                            </Text>
-                        </View>
+            <View style={[styles.column, styleColumn]}>
+                <View style={[styles.row, styleRow]}>
+                    {label ? <Text style={[styles.label, styleLabel]}>{label}</Text> : null}
+                    <View style={[styles.bubble, styleBubble]}>
+                        <TextInput
+                            autoCapitalize="none"
+                            autoCompleteType="password"
+                            textContentType="password"
+                            placeholderTextColor="lightgrey"
+                            {...other}
+                            placeholder={placeholder}
+                            style={[styles.text, styleText]}
+                            secureTextEntry={hideTextEntry}
+                            autoCorrect={false}
+                        />
+                        <MaterialIcon
+                            style={styles.eye}
+                            size={24}
+                            color="rgba(0, 0, 0, .38)"
+                            onPress={this.onAccessoryPress}
+                            suppressHighlighting
+                            name={name}
+                        />
                     </View>
-                )}
-            </LocalizationConsumer>
+                </View>
+                <View style={[styles.errorRow, styleErrorRow]}>
+                    <View style={[{ width: errorWidth }, styleInnerErrorRow]}>
+                        <Text style={[styles.error, styleError]}>{errorMessage}</Text>
+                    </View>
+                </View>
+            </View>
         );
     }
 }
