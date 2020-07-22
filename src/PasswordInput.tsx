@@ -8,9 +8,10 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons'; // eslint-di
 const styles = StyleSheet.create({
     text: {
         fontWeight: 'normal',
-        paddingLeft: 15,
+        paddingHorizontal: 15,
         textAlignVertical: 'center',
         paddingTop: 10,
+        flex: 1,
     },
     label: {
         fontWeight: 'normal',
@@ -28,13 +29,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         // FIXME: Move to color stylesheet once it is implemented
         backgroundColor: 'grey',
-        width: '80%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     eye: {
-        marginTop: 8.5,
-        marginLeft: '85%',
-        position: 'absolute',
-        textAlignVertical: 'center',
+        marginRight: 15,
     },
     // eslint-disable-next-line react-native/no-color-literals
     error: {
