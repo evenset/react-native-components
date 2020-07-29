@@ -14,7 +14,7 @@ export interface IFormSelectField extends ISelectInput {
 /**
  * Form Select element.
  * Extends the SelectInput component
- * Creates
+ * Creates a form field with the select input behaviour
  */
 export const FormSelectField = React.memo(
     connect(
