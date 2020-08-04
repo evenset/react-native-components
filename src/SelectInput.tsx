@@ -5,8 +5,6 @@ import { LocalizationConsumer } from './contexts/LocalizationContext';
 // @ts-ignore - react-native-vector-icons must be installed as a peer dependency
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'; // eslint-disable-line import/no-unresolved
 
-import { Modal, ModalController } from './modal/Modal';
-
 const styles = StyleSheet.create({
     text: {
         fontWeight: 'normal',
@@ -53,27 +51,11 @@ const styles = StyleSheet.create({
         marginLeft: '20%',
         alignContent: 'center',
     },
-    modalInner: {
-        backgroundColor: 'white',
-        borderRadius: 10,
-    },
-    optionText: {
-        fontSize: 16,
-        paddingHorizontal: 12,
-        paddingVertical: 8
-    },
-    separator: {
-        width: '100%',
-        borderBottomWidth: 1,
-        borderBottomColor: 'lightgrey',
-    }
 });
 
 export interface ISelectInput extends TextInputProps {
-    options: Array<string>;
-    modalName: string;
+    onPress: () => void;
     value: string;
-    setValue: Function;
     screen?: string;
     styleText?: StyleProp<TextStyle>;
     styleLabel?: StyleProp<TextStyle>;
@@ -87,9 +69,6 @@ export interface ISelectInput extends TextInputProps {
     styleColumn?: StyleProp<ViewStyle>;
     styleErrorRow?: StyleProp<ViewStyle>;
     backgroundStyle?: object;
-    disableCloseOnTap?: boolean;
-    styleInnerContainer?: object;
-    styleOption?: object;
 }
 
 interface State {
@@ -99,23 +78,10 @@ interface State {
 export class SelectInput extends React.PureComponent<ISelectInput, State> {
     constructor(props: Readonly<ISelectInput>) {
         super(props);
-        this.openOptions = this.openOptions.bind(this);
-        this.setSelected = this.setSelected.bind(this);
-    }
-
-    openOptions(): void {
-        ModalController.open(this.props.modalName);  
-    }
-
-    setSelected(selected: string): void {
-        this.props.setValue(selected)
-        ModalController.close(this.props.modalName);  
     }
 
     render(): ReactElement {
         const {
-            options,
-            modalName,
             screen,
             styleLabel,
             styleRow,
@@ -129,11 +95,8 @@ export class SelectInput extends React.PureComponent<ISelectInput, State> {
             styleColumn,
             styleErrorRow,
             backgroundStyle,
-            disableCloseOnTap,
-            styleInnerContainer,
-            styleOption,
             value,
-            setValue,
+            onPress,
             ...other
         } = this.props;
         const iconName = 'expand-more';
@@ -145,7 +108,7 @@ export class SelectInput extends React.PureComponent<ISelectInput, State> {
                     <View style={[styles.column, styleColumn]}>
                         <View style={[styles.row, styleRow]}>
                             {label ? <Text style={[styles.label, styleLabel]}>{translate(`${screen}.${label}`)}</Text> : null}
-                            <TouchableOpacity style={[styles.bubble, styleBubble]} onPress={this.openOptions}>
+                            <TouchableOpacity style={[styles.bubble, styleBubble]} onPress={onPress}>
                                 <TextInput
                                     placeholderTextColor="grey"
                                     editable={false}
@@ -163,21 +126,6 @@ export class SelectInput extends React.PureComponent<ISelectInput, State> {
                                     suppressHighlighting
                                     name={iconName}
                                 />
-                                <Modal
-                                    name={modalName}
-                                    backgroundStyle={[backgroundStyle]}
-                                    disableCloseOnTap={disableCloseOnTap}
-                                    styleInnerContainer={[styles.modalInner, styleInnerContainer]}
-                                >
-                                    <View>
-                                        {options.map((option: string, index: number) => (
-                                            <TouchableOpacity onPress={() => this.setSelected(option)}>
-                                                <Text style={[styles.optionText, styleOption]} key={option}>{option}</Text>
-                                                {index + 1 !== options.length ? <View style={styles.separator}></View> : null}
-                                            </TouchableOpacity>
-                                        ))}
-                                    </View>
-                                </Modal>
                             </TouchableOpacity>
                         </View>
                         <View style={[styles.errorRow, styleErrorRow]}>

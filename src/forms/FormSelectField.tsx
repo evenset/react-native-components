@@ -12,9 +12,9 @@ export interface IFormSelectField extends ISelectInput {
 }
 
 /**
- * Form input element.
- * Extends the PasswordInput component
- * Automatically handles the onChange and onBlur methods for updating the values and handiling error validation for each field
+ * Form Select element.
+ * Extends the SelectInput component
+ * Creates a form field with the select input behaviour
  */
 export const FormSelectField = React.memo(
     connect(
@@ -43,12 +43,10 @@ export const FormSelectField = React.memo(
             };
 
             const { form, id, ...rest } = props;
-            const value = form.getField(id);
             const error = form.getError(id);
 
             return (
                 <SelectInput
-                    value={value}
                     onChange={changeHandler}
                     onBlur={blurHandler}
                     errorMessage={error}
