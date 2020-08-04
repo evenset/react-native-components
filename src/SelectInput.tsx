@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 });
 
 export interface ISelectInput extends TextInputProps {
-    onPress: Function;
+    onPress: () => void;
     value: string;
     screen?: string;
     styleText?: StyleProp<TextStyle>;
@@ -108,7 +108,7 @@ export class SelectInput extends React.PureComponent<ISelectInput, State> {
                     <View style={[styles.column, styleColumn]}>
                         <View style={[styles.row, styleRow]}>
                             {label ? <Text style={[styles.label, styleLabel]}>{translate(`${screen}.${label}`)}</Text> : null}
-                            <TouchableOpacity style={[styles.bubble, styleBubble]} onPress={() => onPress()}>
+                            <TouchableOpacity style={[styles.bubble, styleBubble]} onPress={onPress}>
                                 <TextInput
                                     placeholderTextColor="grey"
                                     editable={false}
